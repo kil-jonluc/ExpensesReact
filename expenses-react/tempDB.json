@@ -1,0 +1,22 @@
+{
+  "expenses": [
+    {
+      "vendor": "Walmart",
+      "amount": 25.0,
+      "catagory": "Supplies",
+      "Date": "2020-1-15"
+    },
+    {
+      "vendor": "Cracker Barrel",
+      "amount": 12.5,
+      "catagory": "Food",
+      "Date": "2020-2-25"
+    },
+    {
+      "vendor": "Days Inn",
+      "amount": 100.0,
+      "catagory": "Lodging",
+      "Date": "2020-2-25"
+    }
+  ]
+}
