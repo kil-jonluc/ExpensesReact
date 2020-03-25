@@ -1,25 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { getExpenses } from "./api/expensesapi";
 
 function App() {
+  const [expenses, setExpenses] = useState([]);
+  useEffect(loadExpenses, []);
+
+  function loadExpenses() {
+    getExpenses().then(({ data }) => setExpenses(data));
+  }
+
+  function renderExpense(expense) {
+    const { vendor, amount, catagory, date } = expense;
+
+    return(
+      <tr>
+        <td>{vendor}</td>
+        <td>{amount}</td>
+        <td>{catagory}</td>
+        <td>{date}</td>
+      </tr>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Expenses</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Vendor</th>
+            <th>Amount</th>
+            <th>Catagory</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>{expenses.map(renderExpense)}</tbody>
+      </table>
+    </>
   );
 }
 
