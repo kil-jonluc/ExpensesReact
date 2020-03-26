@@ -21,3 +21,7 @@ const expenses = [
     date: "2020-03-19"
   }
 ];
+
+module.exports = {
+  expenses: expenses
+};
