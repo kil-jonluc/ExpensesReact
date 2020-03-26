@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getExpenses } from "./api/expensesapi";
+import TextInput from "./shared/TextInput";
 
 const newExpense = {
   id: null,
@@ -11,7 +12,7 @@ const newExpense = {
 };
 
 function App() {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState([]); // holds list of expenses
   useEffect(loadExpenses, []);
 
   function loadExpenses() {
@@ -21,7 +22,7 @@ function App() {
   function renderExpense(expense) {
     const { vendor, amount, catagory, date } = expense;
 
-    return(
+    return (
       <tr>
         <td>{vendor}</td>
         <td>{amount}</td>
@@ -45,6 +46,17 @@ function App() {
         </thead>
         <tbody>{expenses.map(renderExpense)}</tbody>
       </table>
+      <br />
+      <br />
+      <h2>Add Expense</h2>
+      <br />
+      <form>
+        <TextInput label="Vendor" id="vendor" />
+        <TextInput label="Amount" id="amount" />
+        <TextInput label="Catagory" id="catagory" />
+        <TextInput label="Date" id="date" />
+        <input type="submit" value="Add Expense" className="btn btn-primary"/>
+      </form>
     </>
   );
 }
