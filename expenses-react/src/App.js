@@ -2,6 +2,14 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getExpenses } from "./api/expensesapi";
 
+const newExpense = {
+  id: null,
+  vendor: "",
+  amount: 0,
+  catagory: "",
+  date: ""
+};
+
 function App() {
   const [expenses, setExpenses] = useState([]);
   useEffect(loadExpenses, []);
