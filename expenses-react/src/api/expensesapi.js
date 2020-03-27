@@ -8,7 +8,7 @@ export function removeExpense(id) {
   return axios.delete(`http://localhost:3001/expenses/${id}`);
 }
 
-export function saveExpenses(expense) {
+export function saveExpense(expense) {
   let url = "http://localhost:3001/expenses/";
   return axios[expense.id ? "put" : "post"](url, expense);
 }

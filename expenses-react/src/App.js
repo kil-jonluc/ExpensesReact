@@ -18,7 +18,7 @@ function App() {
         <Route path="/expenses">
           <ExpenseList expenses={expenses} setExpenses={setExpenses} />
         </Route>
-        <Route path="manage/:id?">
+        <Route path="/manage/:id?">
           <ManageExpense expenses={expenses} setExpenses={setExpenses} />
         </Route>
         <Route component={PageNotFound} />
