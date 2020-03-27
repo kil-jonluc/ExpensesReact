@@ -18,11 +18,13 @@ const Intake = ({ id, label, value, onChange, required, type }) => {
   );
 };
 
-//Add PropTypes
-
 Intake.defaultProps = {
   required: false,
   type: "text"
 };
 
 export default Intake;
+
+// TODO
+// 1. Error stuff
+// 2. Add PropTypes
