@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getExpenses } from "./api/expensesapi";
-import TextInput from "./shared/Intake";
 import ExpenseList from "./ExpenseList";
 import ManageExpense from "./ManageExpense";
 import Nav from "./Nav";

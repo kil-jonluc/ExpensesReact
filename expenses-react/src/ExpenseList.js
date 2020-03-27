@@ -1,33 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+//import PropTypes from "prop-types";
+import * as expensesapi from "./api/expensesapi";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getExpenses } from "./api/expensesapi";
-import TextInput from "./shared/TextInput";
+import { Link } from "react-router-dom";
 
-const newExpense = {
-  id: null,
-  vendor: "",
-  amount: 0,
-  catagory: "",
-  date: ""
-};
-
-function App() {
-  const [expenses, setExpenses] = useState([]); // holds list of expenses
+function ExpenseList({ expenses, setExpenses }) {
   useEffect(loadExpenses, []);
 
-  function loadExpenses() {
-    getExpenses().then(({ data }) => setExpenses(data));
+  async function onRemoveClick(id) {
+    await expensesapi.removeExpense(id);
+    setExpenses(expenses.filter(f => f.id !== id));
   }
 
-  function renderExpense(expense) {
-    const { vendor, amount, catagory, date } = expense;
+  function loadExpenses() {
+    expensesapi.getExpenses().then(({ data }) => setExpenses(data));
+  }
+
+  function renderExpenses(expense) {
+    const { id, vendor, amount, catagory, date } = expense;
 
     return (
-      <tr>
+      <tr key={id}>
         <td>{vendor}</td>
         <td>{amount}</td>
         <td>{catagory}</td>
         <td>{date}</td>
+        <td>
+          <Link
+            to={"/manage/" + id}
+            aria-label={`Edit ${vendor} expense`}
+            className="btn btn-primary btn-sm"
+          >
+            Edit
+          </Link>
+        </td>
+        <td>
+          <button
+            aria-label={`Remove ${vendor} expense`}
+            onClick={() => onRemoveClick(id)}
+            className="btn btn-danger btn-sm"
+          >
+            Remove
+          </button>
+        </td>
       </tr>
     );
   }
@@ -35,6 +50,12 @@ function App() {
   return (
     <>
       <h1>Expenses</h1>
+      <br/>
+      <Link to="/manage" className="btn btn-primary" role="button">
+        Add Expense
+      </Link>
+      <br/>
+      <br/>
       <table className="table">
         <thead>
           <tr>
@@ -42,23 +63,19 @@ function App() {
             <th>Amount</th>
             <th>Catagory</th>
             <th>Date</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
-        <tbody>{expenses.map(renderExpense)}</tbody>
+        <tbody>{expenses.map(renderExpenses)}</tbody>
       </table>
-      <br />
-      <br />
-      <h2>Add Expense</h2>
-      <br />
-      <form>
-        <TextInput label="Vendor" id="vendor" />
-        <TextInput label="Amount" id="amount" />
-        <TextInput label="Catagory" id="catagory" />
-        <TextInput label="Date" id="date" />
-        <input type="submit" value="Add Expense" className="btn btn-primary"/>
-      </form>
+      
     </>
   );
 }
 
-export default App;
+export default ExpenseList;
+
+// TODO
+// 1. import proptypes and use proptypes
+// 2. Could add Toast to the delete click

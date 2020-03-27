@@ -4,7 +4,7 @@ export function getExpenses() {
   return axios.get("http://localhost:3001/expenses");
 }
 
-export function removeExpenses(id) {
+export function removeExpense(id) {
   return axios.delete(`http://localhost:3001/expenses/${id}`);
 }
 
