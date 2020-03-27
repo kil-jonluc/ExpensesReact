@@ -10,7 +10,7 @@
 //   date: ""
 // };
 
-// function AddExpense() {
+// function ManageExpense() {
 //   const [expsene, setExpense] = useState(newExpense); // holds add expense
 
 //   function handleSubmit(even) {
