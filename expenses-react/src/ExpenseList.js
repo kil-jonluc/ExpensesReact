@@ -13,7 +13,8 @@ function ExpenseList({ expenses, setExpenses }) {
   }
 
   function loadExpenses() {
-    expensesapi.getExpenses().then(({ data }) => setExpenses(data));
+ 
+      expensesapi.getExpenses().then(({ data }) => setExpenses(data));
   }
 
   function renderExpenses(expense) {
@@ -50,12 +51,12 @@ function ExpenseList({ expenses, setExpenses }) {
   return (
     <>
       <h1>Expenses</h1>
-      <br/>
+      <br />
       <Link to="/manage" className="btn btn-primary" role="button">
         Add Expense
       </Link>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <table className="table">
         <thead>
           <tr>
@@ -69,7 +70,6 @@ function ExpenseList({ expenses, setExpenses }) {
         </thead>
         <tbody>{expenses.map(renderExpenses)}</tbody>
       </table>
-      
     </>
   );
 }

@@ -7,7 +7,7 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 const newExpense = {
   id: null,
   vendor: "",
-  amount: 0,
+  amount: "",
   catagory: "",
   date: ""
 };
@@ -20,6 +20,7 @@ function ManageExpense({ expenses, setExpenses }) {
 
   useEffect(() => {
     async function init() {
+      if(!idToEdit) return;
       const expenseToEdit = getExpenseById(expenses, idToEdit);
       setExpense(expenseToEdit);
     }
