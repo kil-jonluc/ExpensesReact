@@ -13,8 +13,7 @@ function ExpenseList({ expenses, setExpenses }) {
   }
 
   function loadExpenses() {
- 
-      expensesapi.getExpenses().then(({ data }) => setExpenses(data));
+    expensesapi.getExpenses().then(({ data }) => setExpenses(data));
   }
 
   function renderExpenses(expense) {

@@ -18,9 +18,13 @@ function ManageExpense({ expenses, setExpenses }) {
   const idToEdit = parseInt(match.params.id);
   const [expense, setExpense] = useState(newExpense);
 
+  function loadExpenses() {
+    expensesapi.getExpenses().then(({ data }) => setExpenses(data));
+  }
+  
   useEffect(() => {
     async function init() {
-      if(!idToEdit) return;
+      if (!idToEdit) return;
       const expenseToEdit = getExpenseById(expenses, idToEdit);
       setExpense(expenseToEdit);
     }
