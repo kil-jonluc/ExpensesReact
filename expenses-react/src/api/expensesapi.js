@@ -10,6 +10,7 @@ export function removeExpense(id) {
 
 export function saveExpense(expense) {
   let url = "http://localhost:3001/expenses/";
+  if (expense.id) url += expense.id;
   return axios[expense.id ? "put" : "post"](url, expense);
 }
 

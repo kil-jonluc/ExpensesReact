@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as expensesapi from "./api/expensesapi";
-import TextInput from "./shared/Intake";
 import Intake from "./shared/Intake";
 import { useHistory, useRouteMatch } from "react-router-dom";
 
@@ -36,6 +35,8 @@ function ManageExpense({ expenses, setExpenses }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    // const b = false;
+    // if (!b) return;
     expensesapi.saveExpense(expense).then(response => {
       const savedExpense = response.data;
       if (idToEdit) {
