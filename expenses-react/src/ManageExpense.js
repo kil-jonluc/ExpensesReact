@@ -18,15 +18,18 @@ function ManageExpense({ expenses, setExpenses }) {
   const idToEdit = parseInt(match.params.id);
   const [expense, setExpense] = useState(newExpense);
 
-  function loadExpenses() {
-    expensesapi.getExpenses().then(({ data }) => setExpenses(data));
-  }
-  
   useEffect(() => {
     async function init() {
       if (!idToEdit) return;
-      const expenseToEdit = getExpenseById(expenses, idToEdit);
-      setExpense(expenseToEdit);
+      if (expenses.length === 0) {
+        const { data } = await expensesapi.getExpenses();
+        setExpenses(data);
+        const expenseToEdit = getExpenseById(data, idToEdit);
+        setExpense(expenseToEdit);
+      } else {
+        const expenseToEdit = getExpenseById(expenses, idToEdit);
+        setExpense(expenseToEdit);
+      }
     }
 
     init();
@@ -40,8 +43,6 @@ function ManageExpense({ expenses, setExpenses }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // const b = false;
-    // if (!b) return;
     expensesapi.saveExpense(expense).then(response => {
       const savedExpense = response.data;
       if (idToEdit) {
