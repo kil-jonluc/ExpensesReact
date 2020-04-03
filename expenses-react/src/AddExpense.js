@@ -12,7 +12,7 @@ const newExpense = {
   date: ""
 };
 
-function ManageExpense({ expenses, setExpenses }) {
+function AddExpense({ expenses, setExpenses }) {
   const history = useHistory();
   const match = useRouteMatch();
   const idToEdit = parseInt(match.params.id);
@@ -35,7 +35,7 @@ function ManageExpense({ expenses, setExpenses }) {
     init();
 
     function getExpenseById(expenses, id) {
-      const expenseToEdit = expenses.find(d => (d.id = id));
+      const expenseToEdit = expenses.find(d => d.id === id);
       if (!expenseToEdit) return history.push("/page-not-found");
       return expenseToEdit;
     }
@@ -102,7 +102,7 @@ function ManageExpense({ expenses, setExpenses }) {
   );
 }
 
-export default ManageExpense;
+export default AddExpense;
 
 // TODO
 // 1. Add in error managing

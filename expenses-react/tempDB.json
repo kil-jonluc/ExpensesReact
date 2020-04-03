@@ -10,23 +10,23 @@
     {
       "id": 2,
       "vendor": "Cracker Barrel",
-      "amount": 12.5,
+      "amount": "112.5",
       "catagory": "Food",
       "date": "2020-02-25"
     },
     {
       "id": 3,
-      "vendor": "Days Inn",
-      "amount": 100,
-      "catagory": "Lodging",
-      "date": "2020-03-19"
+      "vendor": "hasbro",
+      "amount": "30",
+      "catagory": "game",
+      "date": "2020-01-15"
     },
     {
       "id": 4,
-      "vendor": "ugg",
-      "amount": "125",
-      "catagory": "dfkjh",
-      "date": "1-1-2020"
+      "vendor": "",
+      "amount": "",
+      "catagory": "",
+      "date": ""
     }
   ]
 }

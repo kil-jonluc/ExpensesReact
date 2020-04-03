@@ -13,12 +13,14 @@ function ExpenseList({ expenses, setExpenses }) {
   }
 
   function loadExpenses() {
-    expensesapi.getExpenses().then(({ data }) => setExpenses(data));
+    if (expenses.length === 0)
+      // may need to be removed
+      expensesapi.getExpenses().then(({ data }) => setExpenses(data));
   }
 
   function renderExpenses(expense) {
     const { id, vendor, amount, catagory, date } = expense;
-
+    console.log(`${vendor} and ${id}`);
     return (
       <tr key={id}>
         <td>{vendor}</td>
@@ -27,7 +29,7 @@ function ExpenseList({ expenses, setExpenses }) {
         <td>{date}</td>
         <td>
           <Link
-            to={"/manage/" + id}
+            to={"/edit/" + id}
             aria-label={`Edit ${vendor} expense`}
             className="btn btn-primary btn-sm"
           >
@@ -51,7 +53,7 @@ function ExpenseList({ expenses, setExpenses }) {
     <>
       <h1>Expenses</h1>
       <br />
-      <Link to="/manage" className="btn btn-primary" role="button">
+      <Link to="/add" className="btn btn-primary" role="button">
         Add Expense
       </Link>
       <br />
