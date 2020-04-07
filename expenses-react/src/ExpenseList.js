@@ -53,7 +53,7 @@ function ExpenseList({ expenses, setExpenses }) {
     <>
       <h1>Expenses</h1>
       <br />
-      <Link to="/add" className="btn btn-primary" role="button">
+      <Link to="/addExpense" className="btn btn-primary" role="button">
         Add Expense
       </Link>
       <br />
