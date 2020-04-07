@@ -9,13 +9,13 @@ function ExpenseList({ expenses, setExpenses }) {
 
   async function onRemoveClick(id) {
     await expensesapi.removeExpense(id);
-    setExpenses(expenses.filter(f => f.id !== id));
+    setExpenses(expenses.filter((f) => f.id !== id));
   }
 
   function loadExpenses() {
-    if (expenses.length === 0)
-      // may need to be removed
-      expensesapi.getExpenses().then(({ data }) => setExpenses(data));
+    //if (expenses.length === 0)
+    // may need to be removed
+    expensesapi.getExpenses().then(({ data }) => setExpenses(data));
   }
 
   function renderExpenses(expense) {
