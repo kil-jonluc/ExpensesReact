@@ -91,6 +91,7 @@ function AddExpense({ expenses, setExpenses }) {
           id="date"
           onChange={handleChange}
           value={expense.date}
+          type="date"
         />
         <input
           type="submit"

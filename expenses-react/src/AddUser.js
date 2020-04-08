@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Intake from "./shared/Intake";
 import * as userApi from "./api/userApi";
 
@@ -14,16 +14,13 @@ const newUser = {
 
 function AddUser() {
   const history = useHistory();
-  const match = useRouteMatch();
   const [user, setUser] = useState(newUser);
 
   function handleSubmit(event) {
     event.preventDefault();
-    userApi.AddUser(user).then((response) => {
-      const savedUser = response.data;
-      setUser([...user, savedUser]);
-      history.push("/Login");
-    });
+    userApi.addUser(user);
+     
+    history.push("/Login");
   }
 
   function handleChange(event) {
@@ -32,7 +29,46 @@ function AddUser() {
     setUser(newUser);
   }
 
-  return <div></div>;
+  return (
+    <>
+      <h1>{"Add Account"}</h1>
+      <br />
+      <form onSubmit={handleSubmit}>
+        <Intake
+          label="First Name"
+          id="firstName"
+          onChange={handleChange}
+          value={user.firstName}
+        />
+        <Intake
+          label="Last Name"
+          id="lastName"
+          onChange={handleChange}
+          value={user.lastName}
+        />
+        <Intake
+          label="Username"
+          id="username"
+          onChange={handleChange}
+          value={user.username}
+        />
+        <Intake
+          label="Password"
+          id="password"
+          onChange={handleChange}
+          value={user.password}
+          type="password"
+        />
+        <Intake
+          label="Employer"
+          id="employer"
+          onChange={handleChange}
+          value={user.employer}
+        />
+        <input type="submit" value="Add Account" className="btn btn-primary" />
+      </form>
+    </>
+  );
 }
 
 export default AddUser;

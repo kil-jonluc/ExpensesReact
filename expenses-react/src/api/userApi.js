@@ -8,8 +8,7 @@ import axios from "axios";
 //  return axios.delete(`http://localhost:3001/expenses/${id}`);
 //}
 
-export async function save(user) {
-  let url = "http://localhost:3002/user/";
-  if (user.id) url += user.id;
+export async function addUser(user) {
+  let url = "http://localhost:3002/users/";
   return axios.post(url, user);
 }

@@ -32,7 +32,7 @@ function App() {
           <Login user={user} setUser={setUser} />
         </Route>
         <Route path="/addUser">
-          <AddUser user={user} setUser={setUser} />
+          <AddUser />
         </Route>
         <Route component={PageNotFound} />
       </Switch>
